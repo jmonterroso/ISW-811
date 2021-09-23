@@ -2,6 +2,7 @@ const dotEnv = require("dotenv");
 const express = require("express");
 const cors = require("cors");
 const logger = require("morgan");
+const chalk = require("chalk");
 const app = express();
 
 // esta linea ayuda a leer la configuracion que tenemos en el archivo .env
@@ -25,5 +26,10 @@ app.use(
 
 // iniciamos nuestro servidor
 app.listen(port, () => {
-  console.log(`The server has started at http://localhost:${port}`);
+  console.log(
+    `${chalk.green("✓")} App is running at ${chalk.bgGreen(
+      `http://localhost:${port}`
+    )}`
+  );
+  console.log("  Press CTRL-C to stop\n");
 });
