@@ -12,6 +12,7 @@ const port = process.env.PORT || 3000;
 
 // usamos el middleware cors para aceptar llamadas cors en nuestro servidor
 app.use(cors());
+// este middleware nos sirve para loggear las llamadas al servidor
 app.use(logger("dev"));
 
 // iniciamos nuestro servidor
