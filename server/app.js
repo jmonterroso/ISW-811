@@ -15,6 +15,14 @@ app.use(cors());
 // este middleware nos sirve para loggear las llamadas al servidor
 app.use(logger("dev"));
 
+// middleware para manejar requests y respuestas json
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+
 // iniciamos nuestro servidor
 app.listen(port, () => {
   console.log(`The server has started at http://localhost:${port}`);
