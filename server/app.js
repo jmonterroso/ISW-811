@@ -3,10 +3,25 @@ const express = require("express");
 const cors = require("cors");
 const logger = require("morgan");
 const chalk = require("chalk");
+const mongoose = require("mongoose");
 const app = express();
-
 // esta linea ayuda a leer la configuracion que tenemos en el archivo .env
 dotEnv.config();
+
+// definimos el uri de la base de datos definido en el archivo .env
+const mongoDB = process.env.MONGODB_DATABASE;
+
+// se conecta a la base de datos
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+
+// esta es la conexión a la base de datos la cual usaremos para detectar errores o conexiones
+const db = mongoose.connection;
+
+//  reporta un error en la conexión
+db.on("error", console.error.bind(console, "MongoDB connection error"));
+
+//  cuando se conecta a la BD monstrara este mensaje
+db.once("open", () => console.log("Connected Successfully to DB " + mongoDB));
 
 // se define el puerto que va a escuchar basado en el archivo de configuración .env
 const port = process.env.PORT || 3000;
