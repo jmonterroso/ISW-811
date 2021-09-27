@@ -5,6 +5,11 @@ const logger = require("morgan");
 const chalk = require("chalk");
 const mongoose = require("mongoose");
 const app = express();
+
+// Routes
+
+const postRouter = require("./routes/posts");
+
 // esta linea ayuda a leer la configuracion que tenemos en el archivo .env
 dotEnv.config();
 
@@ -38,6 +43,9 @@ app.use(
     extended: true,
   })
 );
+
+// todas las rutas las definimos aqui
+app.use("/posts/", postRouter);
 
 // iniciamos nuestro servidor
 app.listen(port, () => {
