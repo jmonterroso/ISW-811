@@ -2,7 +2,7 @@
 
 ## Blog Personal
 
-Esta aplicación esta creada utilizando MEAN stack, para crear un blog de articulos. Est
+Esta aplicación esta creada utilizando MEAN stack, para crear un blog de articulos.
 
 ## Instalación
 
