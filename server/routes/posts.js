@@ -14,4 +14,25 @@ router.post("/", (req, res, next) => {
   res.json(post);
 });
 
+router.delete("/:id", async (req, res, next) => {
+  const post = await PostModel.findByIdAndRemove(req.params.id);
+  // si post es null significa que no existe el registro
+  if (post) {
+    res.json({ result: `Post borrado correctamente`, post });
+  } else {
+    res.json({ result: "Id de Post Invalido Invalid", post });
+  }
+});
+
+// actualizar registro
+router.put("/:id", async (req, res, next) => {
+  const { title, body } = req.body;
+  const post = await PostModel.findOneAndUpdate(
+    { _id: req.params.id },
+    { title, body }, // ==> {title: title, body: body}
+    { new: true } // retornar el registro que hemos modificado con los nuevos valores
+  );
+  res.json(post);
+});
+
 module.exports = router;
