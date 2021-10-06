@@ -1,38 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const PostModel = require("../models/Post");
+const postController = require("../controllers/postController");
 
-router.get("/", async (req, res, next) => {
-  const posts = await PostModel.find().exec();
-  res.json(posts);
-});
+router.get("/", postController.get);
 
-router.post("/", (req, res, next) => {
-  const { title, body } = req.body;
-  const post = new PostModel({ title: title, body: body });
-  post.save();
-  res.json(post);
-});
+router.post("/", postController.create);
 
-router.delete("/:id", async (req, res, next) => {
-  const post = await PostModel.findByIdAndRemove(req.params.id);
-  // si post es null significa que no existe el registro
-  if (post) {
-    res.json({ result: `Post borrado correctamente`, post });
-  } else {
-    res.json({ result: "Id de Post Invalido Invalid", post });
-  }
-});
+router.delete("/:id", postController.delete);
 
 // actualizar registro
-router.put("/:id", async (req, res, next) => {
-  const { title, body } = req.body;
-  const post = await PostModel.findOneAndUpdate(
-    { _id: req.params.id },
-    { title, body }, // ==> {title: title, body: body}
-    { new: true } // retornar el registro que hemos modificado con los nuevos valores
-  );
-  res.json(post);
-});
+router.put("/:id", postController.update);
 
 module.exports = router;
