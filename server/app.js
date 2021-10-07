@@ -9,6 +9,7 @@ const app = express();
 // Routes
 
 const postRouter = require("./routes/posts");
+const authorRouter = require("./routes/author");
 
 // esta linea ayuda a leer la configuracion que tenemos en el archivo .env
 dotEnv.config();
@@ -46,6 +47,7 @@ app.use(
 
 // todas las rutas las definimos aqui
 app.use("/posts/", postRouter);
+app.use("/author/", authorRouter);
 
 // iniciamos nuestro servidor
 app.listen(port, () => {

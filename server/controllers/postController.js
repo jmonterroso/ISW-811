@@ -1,13 +1,19 @@
 const PostModel = require("../models/Post");
 
 module.exports.get = async (req, res, next) => {
-  const posts = await PostModel.find().exec();
+  const posts = await PostModel.find().populate("author", "name info").exec();
   res.json(posts);
 };
 
+module.exports.getById = async (req, res, next) => {
+  const id = req.params.id;
+  const post = await PostModel.findOne({ _id: id }).exec();
+  res.json(post);
+};
+
 module.exports.create = (req, res, next) => {
-  const { title, body } = req.body;
-  const post = new PostModel({ title: title, body: body });
+  const { title, body, author } = req.body;
+  const post = new PostModel({ title: title, body: body, author: author });
   post.save();
   res.json(post);
 };
