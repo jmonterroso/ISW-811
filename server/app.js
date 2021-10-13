@@ -5,11 +5,16 @@ const logger = require("morgan");
 const chalk = require("chalk");
 const mongoose = require("mongoose");
 const app = express();
+const passport = require('passport');
+
+//instalación de paquetes para passport
+//npm install  bcrypt-nodejs jsonwebtoken  passport passport-jwt --save
 
 // Routes
 
 const postRouter = require("./routes/posts");
 const authorRouter = require("./routes/author");
+const userRouter = require("./routes/user");
 
 // esta linea ayuda a leer la configuracion que tenemos en el archivo .env
 dotEnv.config();
@@ -48,6 +53,8 @@ app.use(
 // todas las rutas las definimos aqui
 app.use("/posts/", postRouter);
 app.use("/author/", authorRouter);
+app.use("/user/", userRouter);
+
 
 // iniciamos nuestro servidor
 app.listen(port, () => {
