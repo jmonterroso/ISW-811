@@ -2,16 +2,21 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require('bcrypt-nodejs');
 
 const UserSchema = new Schema({
-    username: {
-          type: String,
-          unique: true,
-          required: true
-      },
-    password: {
-          type: String,
-          required: true
-      }
-  });
+  username: {
+    type: String,
+    unique: true,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  role: {
+    type: String,
+    default: "user",
+    enum: ["user", "admin"],
+  },
+});
 
 UserSchema.pre('save', function (next) {
     var user = this;
