@@ -1,0 +1,7 @@
+<router-outlet></router-outlet>
+<ul>
+  <li *ngFor="let element of elements">  
+    {{element}}
+    <span *ngIf="element==='hola'||element==='mundo' ">👋🏻</span>
+  </li>
+</ul>

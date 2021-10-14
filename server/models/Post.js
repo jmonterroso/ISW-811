@@ -4,10 +4,12 @@ const PostSchema = new Schema(
   {
     title: String,
     body: String,
-    author: {
-      type: Schema.Types.ObjectId,
-      ref: "Author",
-    },
+    asientos: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Asientos",
+      },
+    ],
   },
   { timestamps: true }
 );
