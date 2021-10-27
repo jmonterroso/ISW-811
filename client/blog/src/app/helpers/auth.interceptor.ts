@@ -12,15 +12,15 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private token: TokenStorageService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log("Ingreso aca");
+    //Se obtiene la solicitud
     let authReq = req;
+    //Se obtiene el token del localstorage
     const token = this.token.getToken();
-
-    console.log("Token: " + token);
-
     if (token != null) {
+      //se agrega el token en los encabezados de la solicitud
       authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, token) });
     }
+    //se procede con la solicitud
     return next.handle(authReq);
   }
 }
