@@ -34,14 +34,15 @@ module.exports.signin = async (req, res, next) => {
         //Si el usuario existe verifica si las contraseñas
         user.comparePassword(password, user.password, function (err, isMatch) {
             if (isMatch && !err) {
-                // Si el usuario es correcto y la contraseña coindice se procede a crear el token
-                const token = jwt.sign({ "username": username}, 
-                                         config.SECRETWORDJWT, 
-                                         { expiresIn: "2h"}
-                                       );
-                // return the information including token as JSON
-                res.json({ success: true, token: token });
-
+              // Si el usuario es correcto y la contraseña coindice se procede a crear el token
+              const token = jwt.sign(
+                { username: username },
+                config.SECRETWORDJWT,
+                { expiresIn: "2h" }
+              );
+              // return the information including token as JSON
+              const payload = { role: user.role, username: user.username };
+              res.json({ success: true, token: token, user: payload });
             } else {
                 //si la contraseña no coincide se procede a indicar el error
                 //res.status(401).send({ success: false, msg: 'Authentication failed. Wrong password.' });

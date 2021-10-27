@@ -10,28 +10,25 @@ export class AppComponent {
   title = 'hola mundo';
   elements = ['hola', 'mundo', 'que', 'tal', 'como', 'estas'];
 
-  
-
-  //Atributos para la autenticación 
+  //Atributos para la autenticación
   private roles: string[] = [];
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;
-  username?: string;
+  username: string = '';
 
-  constructor(private tokenStorageService: TokenStorageService) { }
+  constructor(private tokenStorageService: TokenStorageService) {}
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
-
+    console.log(this.isLoggedIn, 'this.isLoggedIn');
     if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
-
+      const { user } = this.tokenStorageService.getUser();
+      this.roles = user.role;
+      this.username = user.username;
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
       this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-
-      this.username = user.username;
+      console.log(this.username, 'this.username');
     }
   }
 

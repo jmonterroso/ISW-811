@@ -7,9 +7,11 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 
 import { BlogListComponent } from './components/blog/blog-list/blog-list.component';
+import { PostComponent } from './components/blog/post/post.component';
 
 const routes: Routes = [
-  { path: 'blog', component: BlogListComponent, },
+  { path: 'blog', component: BlogListComponent },
+  { path: 'blog/:id', component: PostComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },

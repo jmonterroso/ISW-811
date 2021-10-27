@@ -34,10 +34,10 @@ export class LoginComponent implements OnInit {
       data => {
         console.log(data);
         if(data.success===true){
-          data.roles = ["admin"];
+          console.log(data.success, 'data.success');
+          data.roles = data.user.role;
           this.tokenStorage.saveToken(data.token);
           this.tokenStorage.saveUser(data);
-  
           this.isLoginFailed = false;
           this.isLoggedIn = true;
           this.roles = this.tokenStorage.getUser().roles;

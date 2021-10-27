@@ -1,6 +1,6 @@
 <div *ngFor="let post of posts">
   <div class="post-preview">
-    <a href="post.html">
+    <a routerLink="/blog/{{post._id}}" >
       <h2 class="post-title">
        {{post.title}}
       </h2>
