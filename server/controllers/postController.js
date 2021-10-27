@@ -2,7 +2,7 @@ const PostModel = require("../models/Post");
 
 
 module.exports.get = async (req, res, next) => {
-    const posts = await PostModel.find().populate("author", "name info").exec();
+    const posts = await PostModel.find().exec();
     res.json(posts);
 };
 

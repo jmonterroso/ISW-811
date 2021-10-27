@@ -7,7 +7,8 @@ const auth = require("../middleware/auth");
 const { permit } = require("../middleware/authorization");
 
 //Definición de rutas para cada uno de los verbos para los post
-router.get("/", auth, permit("admin"), postController.get);
+//router.get("/", auth, permit("admin"), postController.get);
+router.get("/", auth, postController.get);
 
 router.get("/:id", auth , postController.getById);
 

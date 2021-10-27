@@ -40,11 +40,12 @@ module.exports.signin = async (req, res, next) => {
                                          { expiresIn: "2h"}
                                        );
                 // return the information including token as JSON
-                res.json({ success: true, token: 'JWT ' + token });
+                res.json({ success: true, token: token });
 
             } else {
                 //si la contraseña no coincide se procede a indicar el error
-                res.status(401).send({ success: false, msg: 'Authentication failed. Wrong password.' });
+                //res.status(401).send({ success: false, msg: 'Authentication failed. Wrong password.' });
+                res.json({ success: false, msg: 'Authentication failed. Wrong password.' });
             }
         });
     }

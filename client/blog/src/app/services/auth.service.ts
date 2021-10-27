@@ -8,9 +8,6 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-const httpOptionsLogin = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
-}
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +19,7 @@ export class AuthService {
     return this.http.post(AUTH_API + 'signin', {
       username,
       password
-    });
+    }, httpOptions);
   }
 
   register(username: string , password: string): Observable<any> {
