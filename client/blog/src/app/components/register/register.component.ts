@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const { username, email, password } = this.form;
+    const { username, password } = this.form;
 
     this.authService.register(username,  password).subscribe(
       data => {
