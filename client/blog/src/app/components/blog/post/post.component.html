@@ -3,3 +3,52 @@
     {{post.body}}
 </p>
 
+<form [formGroup]="commentForm" (ngSubmit)="submitForm()">
+    <div class="form-group mb-4">
+      <label for="exampleInputEmail1">Nombre</label>
+      <input
+        formControlName="name"
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="Nombre"
+      />   
+      <span *ngIf="name?.invalid" class="text-danger"
+      >El nombre es requerido</span>
+    </div>
+    <div class="form-group mb-4">
+      <label for="exampleInputEmail1">Comentario</label>
+      <textarea          
+        class="form-control"
+        formControlName="content"
+        id="comment"
+        aria-describedby="commentHelp"
+        placeholder="Comentario"
+        rows="5"
+      ></textarea>
+      <span *ngIf="content?.invalid" class="text-danger"
+      >El nombre es requerido</span>
+    
+    </div>      
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
+
+
+  <div class="row mt-5" *ngIf="post.comments.length">
+    <div class="col-12">
+        <h2 class="mb-3">Comentarios</h2>
+        <div class="list-group">
+            <div
+            class="list-group-item list-group-item-action"
+            *ngFor="let comment of post.comments"
+            >
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ comment.name }}</h5>
+                <small class="ms-auto mr-4 me-3">{{ comment.createdAt | date:'dd/MM/yyyy' }}</small>
+                <small (click)="deleteComment(comment._id)"><i class="fa fa-times"></i></small>
+            </div>
+            <p class="mb-1">{{ comment.content }}</p>
+            </div>
+        </div>
+    </div>
+</div>

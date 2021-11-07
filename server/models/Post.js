@@ -4,10 +4,10 @@ const PostSchema = new Schema(
   {
     title: String,
     body: String,
-    asientos: [
+    comments: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Asientos",
+        ref: "Comment",
       },
     ],
   },

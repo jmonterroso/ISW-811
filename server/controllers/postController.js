@@ -1,14 +1,16 @@
 const PostModel = require("../models/Post");
+const CommentModel = require("../models/Comment");
 
+const mongoose = require("mongoose");
 
 module.exports.get = async (req, res, next) => {
-    const posts = await PostModel.find().exec();
-    res.json(posts);
+  const posts = await PostModel.find().exec();
+  res.json(posts);
 };
 
 module.exports.getById = async (req, res, next) => {
   const id = req.params.id;
-  const post = await PostModel.findOne({ _id: id }).exec();
+  const post = await PostModel.findOne({ _id: id }).populate("comments").exec();
   res.json(post);
 };
 
@@ -38,3 +40,42 @@ module.exports.update = async (req, res, next) => {
   );
   res.json(post);
 };
+
+module.exports.createComment = async (req, res, next) => {
+  const isValidId = mongoose.isValidObjectId(req.params.id);
+  if (isValidId) {
+    const comment = new CommentModel({ ...req.body });
+    comment.save();
+
+    const updated = await PostModel.findOneAndUpdate(
+      { _id: req.params.id },
+      { $push: { comments: mongoose.Types.ObjectId(comment._id) } },
+      { new: true }
+    )
+      .populate("comments")
+      .exec();
+
+    res.json(updated);
+  } else {
+    res.json({ error: "Invalid Id" });
+  }
+};
+
+module.exports.deleteComment = async (req, res, next) => {
+  const isValidId = mongoose.isValidObjectId(req.params.id);
+  const { id, commentId } = req.params;
+  if (isValidId) {
+    const updated = await PostModel.findOneAndUpdate(
+      { _id: id },
+      { $pull: { comments: mongoose.Types.ObjectId(commentId) } },
+      { new: true }
+    )
+      .populate("comments")
+      .exec();
+    await CommentModel.deleteOne({ _id: commentId }).exec();
+    res.json(updated);
+  } else {
+    res.json({ error: "Invalid ObjectId" });
+  }
+};
+

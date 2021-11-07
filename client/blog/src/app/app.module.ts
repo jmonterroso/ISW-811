@@ -12,6 +12,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { PostComponent } from './components/blog/post/post.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,9 +27,10 @@ import { PostComponent } from './components/blog/post/post.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [authInterceptorProviders],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

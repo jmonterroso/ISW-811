@@ -8,7 +8,7 @@ const permit = (...permittedRoles) => {
       next();
     } else {
       // retorna forbidden si el usuario no tiene acceso
-      response.status(403).json({ message: "Forbidden" });
+      response.status(403).json({ message: "Prohibido para el rol" });
     }
   };
 };
