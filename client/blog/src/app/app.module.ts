@@ -13,6 +13,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { PostComponent } from './components/blog/post/post.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PublicLayoutComponent } from './components/public-layout/public-layout.component';
+import { RegisteredLayoutComponent } from './components/registered-layout/registered-layout.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     RegisterComponent,
     ProfileComponent,
     PostComponent,
+    PublicLayoutComponent,
+    RegisteredLayoutComponent,
   ],
   imports: [
     BrowserModule,

@@ -32,6 +32,14 @@ export class AppComponent {
     }
   }
 
+  get isUserAuthenticated(): any {
+    return this.tokenStorageService.getToken;
+  }
+  get userNameValue(): any {
+    const { user } = this.tokenStorageService.getUser();
+    return user.username;
+  }
+
   logout(): void {
     this.tokenStorageService.signOut();
     window.location.reload();
