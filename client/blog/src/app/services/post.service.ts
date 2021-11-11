@@ -19,6 +19,16 @@ export class PostService {
   get(): Observable<any> {
     return this.http.get(BLOG_API_ENDPOINT, httpOptions);
   }
+  create(post: any): Observable<any> {
+    return this.http.post(BLOG_API_ENDPOINT, post);
+  }
+  delete(id: string): Observable<any> {
+    return this.http.delete(`${BLOG_API_ENDPOINT}/${id}`);
+  }
+
+  edit(id: string, post: any): Observable<any> {
+    return this.http.put(`${BLOG_API_ENDPOINT}/${id}`, post);
+  }
 
   getById(id: string): Observable<any> {
     return this.http.get(`${BLOG_API_ENDPOINT}/${id}`);

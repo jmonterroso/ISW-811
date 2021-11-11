@@ -1,0 +1,13 @@
+<div class="mt-5">
+    <form [formGroup]="postForm" (ngSubmit)="submitForm()">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Title</label>
+            <input formControlName="title" type="text" class="form-control" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Body</label>
+            <textarea formControlName="body" class="form-control" aria-describedby="emailHelp"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

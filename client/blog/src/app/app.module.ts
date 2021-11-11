@@ -15,6 +15,8 @@ import { PostComponent } from './components/blog/post/post.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PublicLayoutComponent } from './components/public-layout/public-layout.component';
 import { RegisteredLayoutComponent } from './components/registered-layout/registered-layout.component';
+import { ListComponent } from './components/blog/list/list.component';
+import { FormComponent } from './components/blog/form/form.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { RegisteredLayoutComponent } from './components/registered-layout/regist
     PostComponent,
     PublicLayoutComponent,
     RegisteredLayoutComponent,
+    ListComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,

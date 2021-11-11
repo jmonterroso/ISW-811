@@ -9,6 +9,8 @@ import { PublicLayoutComponent } from './components/public-layout/public-layout.
 import { BlogListComponent } from './components/blog/blog-list/blog-list.component';
 import { PostComponent } from './components/blog/post/post.component';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { ListComponent } from './components/blog/list/list.component';
+import { FormComponent } from './components/blog/form/form.component';
 
 const routes: Routes = [
   {
@@ -25,7 +27,12 @@ const routes: Routes = [
     path: 'dashboard',
     canActivate: [AuthGuard],
     component: PublicLayoutComponent,
-    children: [{ path: 'profile', component: ProfileComponent }],
+    children: [
+      { path: 'profile', component: ProfileComponent },
+      { path: 'blog/list', component: ListComponent },
+      { path: 'blog/new', component: FormComponent },
+      { path: 'blog/:id', component: FormComponent },
+    ],
   },
 ];
 
